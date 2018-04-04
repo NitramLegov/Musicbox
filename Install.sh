@@ -1,30 +1,5 @@
 #!/bin/sh
 
-BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
-CONFIG=/boot/config.txt
-echo 'In order to have an up to date system, we will update the apt-get packages'
-sudo apt-get -qq update
-
-#Let us do some basic config
-echo 'First, we need to do some basic settings: Expand the FS and boot to command line'
-sudo raspi-config nonint do_expand_rootfs
-sudo raspi-config nonint do_boot_behaviour B1
-
-#Enable the x400 expansion board
-echo 'Now we will enable the x400 expansion board by enabling i2c and adding a device tree overlay'
-sudo raspi-config nonint do_i2c 0
-if check_iqaudio_activated ; then
- #do nothing
- echo 'iqaudio already activated'
-else
- echo 'activating iqaudio'
- enter_full_setting dtoverlay=iqaudio-dacplus $CONFIG
-fi
-
-
-
-echo 'All done, a reboot is recommended.'
-
 check_iqaudio_activated() {
 if grep -q -E "^(device_tree_overlay|dtoverlay)=([^,]*,)*iqaudio-dacplus?(,.*)?$" /boot/config.txt ; then
   #line is available and activated
@@ -77,3 +52,29 @@ end
 EOF
 mv "$3.bak" "$3"
 }
+
+BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
+CONFIG=/boot/config.txt
+echo 'In order to have an up to date system, we will update the apt-get index.'
+sudo apt-get -qq update
+
+#Let us do some basic config
+echo 'First, we need to do some basic settings: Expand the FS and boot to command line.'
+sudo raspi-config nonint do_expand_rootfs
+sudo raspi-config nonint do_boot_behaviour B1
+
+#Enable the x400 expansion board
+echo 'Now we will enable the x400 expansion board by enabling i2c and adding a device tree overlay'
+sudo raspi-config nonint do_i2c 0
+if check_iqaudio_activated ; then
+ #do nothing
+ echo 'iqaudio already activated'
+else
+ echo 'activating iqaudio'
+ enter_full_setting dtoverlay=iqaudio-dacplus $CONFIG
+fi
+
+
+
+echo 'All done, a reboot is recommended.'
+
