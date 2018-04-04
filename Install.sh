@@ -2,7 +2,7 @@
 
 BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
 CONFIG=/boot/config.txt
-
+echo 'In order to have an up to date system, we will update the apt-get packages'
 sudo apt-get -qq update
 
 #Let us do some basic config
@@ -15,7 +15,9 @@ echo 'Now we will enable the x400 expansion board by enabling i2c and adding a d
 sudo raspi-config nonint do_i2c 0
 if check_iqaudio_activated ; then
  #do nothing
+ echo 'iqaudio already activated'
 else
+ echo 'activating iqaudio'
  enter_full_setting dtoverlay=iqaudio-dacplus $CONFIG
 fi
 
