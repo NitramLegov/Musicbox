@@ -25,10 +25,21 @@ def m3u_defaults():
 
 def http_defaults():
     config['http']['enabled'] = 'True'
-    config['http']['hostname'] = '0.0.0.0'
+    config['http']['hostname'] = '::'
     config['http']['port'] = '8888'
     config['http']['static_dir'] = ""
     config['http']['zeroconf'] = 'Mopidy HTTP server on $hostname'
+
+def mpd_defaults():
+    config['mpd']['enabled'] = 'True'
+    config['mpd']['hostname'] = '127.0.0.1'
+    config['mpd']['port'] = '6600'
+    config['mpd']['password'] = ''
+    config['mpd']['max_connections'] = '20'
+    config['mpd']['connection_timeout'] = '60'
+    config['mpd']['zeroconf'] = 'Mopidy MPD server on $hostname'
+    config['mpd']['command_blacklist'] = '  listall\n  listallinfo'
+    config['mpd']['default_playlist_scheme'] = 'm3u'
 
 def websettings_defaults():
     config['websettings']['enabled'] = 'True'
@@ -43,6 +54,18 @@ def spotify_defaults(spotify_user = '', spotify_client_id = '', spotify_client_s
     config['spotify']['password'] = spotify_password
     config['spotify']['bitrate'] = '320'
 
+def spotify_web_defaults(spotify_user = '', spotify_client_id = '', spotify_client_secret = '', spotify_password = ''):
+    config['spotify_web']['enabled'] = 'True'
+    config['spotify_web']['username'] = spotify_user
+    config['spotify_web']['client_id'] = spotify_client_id
+    config['spotify_web']['client_secret'] = spotify_client_secret
+    config['spotify_web']['password'] = spotify_password
+    config['spotify_web']['bitrate'] = '320'
+
+def audio_defaults():
+    config['audio']['mixer_volume'] = '100'
+    config['audio']['mixer'] = 'software'
+    config['audio']['output'] = 'alsasink device=hw:1,0'
 
 if not config.has_section('core'):
     config.add_section('core')
@@ -73,7 +96,10 @@ logging_defaults()
 local_defaults()
 m3u_defaults()
 http_defaults()
+mpd_defaults()
 websettings_defaults()
 spotify_defaults()
+spotify_web_defaults()
+audio_defaults()
 with open(config_file, 'wb') as configfile:
   config.write(configfile)
