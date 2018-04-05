@@ -59,4 +59,5 @@ m3u_defaults()
 http_defaults()
 websettings_defaults()
 spotify_defaults()
-config.write()
+with open('config_file', 'wb') as configfile:
+  config.write(configfile)
