@@ -1,12 +1,11 @@
 #!/bin/sh
-
 check_iqaudio_activated() {
 if grep -q -E "^(device_tree_overlay|dtoverlay)=([^,]*,)*iqaudio-dacplus?(,.*)?$" /boot/config.txt ; then
   #line is available and activated
-  return true
+  return 0
 else
   #line not available or not activated
-  return false
+  return 1
 fi
 }
 
@@ -16,11 +15,11 @@ lua - "$1" "$2" <<EOF > "$2.bak"
 local key=assert(arg[1])
 local fn=assert(arg[2])
 local file=assert(io.open(fn))
-local made_change=false
+local made_change=False
 for line in file:lines() do
   if line:match("^#?%s*"..key) then
     line=key
-    made_change=true
+    made_change=True
   end
   print(line)
 end
@@ -38,11 +37,11 @@ local key=assert(arg[1])
 local value=assert(arg[2])
 local fn=assert(arg[3])
 local file=assert(io.open(fn))
-local made_change=false
+local made_change=False
 for line in file:lines() do
   if line:match("^#?%s*"..key.."=.*$") then
     line=key.."="..value
-    made_change=true
+    made_change=True
   end
   print(line)
 end
@@ -55,17 +54,17 @@ mv "$3.bak" "$3"
 
 BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
 CONFIG=/boot/config.txt
-echo 'In order to have an up to date system, we will update the apt-get index.'
-sudo apt-get -qq update
-
 #Let us do some basic config
+echo '--------------------------------------------'
 echo 'First, we need to do some basic settings: Expand the FS and boot to command line.'
 sudo raspi-config nonint do_expand_rootfs
 sudo raspi-config nonint do_boot_behaviour B1
 
 #Enable the x400 expansion board
+echo '--------------------------------------------'
 echo 'Now we will enable the x400 expansion board by enabling i2c and adding a device tree overlay'
 sudo raspi-config nonint do_i2c 0
+
 if check_iqaudio_activated ; then
  #do nothing
  echo 'iqaudio already activated'
@@ -73,8 +72,37 @@ else
  echo 'activating iqaudio'
  enter_full_setting dtoverlay=iqaudio-dacplus $CONFIG
 fi
+echo 'iqaudio activated'
 
 
+
+
+echo '--------------------------------------------'
+echo 'now we can start installing mopidy, following the instructions on https://docs.mopidy.com/en/latest/installation/raspberrypi/'
+echo 'Adding the repository...'
+wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
+echo '--------------------------------------------'
+echo 'Updating the apt-get index'
+sudo apt-get -qq update
+echo '--------------------------------------------'
+echo 'Installing mopidy'
+sudo apt-get -q -y install build-essential python-dev python-pip mopidy
+
+echo '--------------------------------------------'
+echo 'now we will install a couple of mopidy extensions.'
+#extensions are installed in this order because the apt-get commands will install dependencies like libffi automatically. This is needed by some of the extensions installed via pip.
+
+sudo apt-get -q -y install mopidy-spotify mopidy-spotify-tunigo mopidy-youtube
+sudo pip install -q Mopidy-Iris
+sudo pip install -q Mopidy-Material-Webclient
+sudo pip install -q Mopidy-Moped
+sudo pip install -q Mopidy-Mopify
+sudo pip install -q Mopidy-Party
+sudo pip install -q Mopidy-MusicBox-Webclient
+sudo pip install -q Mopidy-WebSettings
+echo '--------------------------------------------'
+echo 'now we enable running mopidy as a service. This requires all config to be stored in /etc/mopiy/mopidy.conf'
+sudo systemctl enable mopidy
 
 echo 'All done, a reboot is recommended.'
-
