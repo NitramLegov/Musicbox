@@ -44,14 +44,30 @@ def spotify_defaults(spotify_user = '', spotify_client_id = '', spotify_client_s
     config['spotify']['bitrate'] = '320'
 
 
-if not config.has_section('core') : config.add_section('core')
-if not config.has_section('logging') : config.add_section('logging')
-if not config.has_section('local') : config.add_section('local')
-if not config.has_section('http') : config.add_section('http')
-if not config.has_section('mpd') : config.add_section('mpd')
-if not config.has_section('spotify') : config.add_section('spotify')
-if not config.has_section('spotify_web') : config.add_section('spotify_web')
-if not config.has_section('audio') : config.add_section('audio')
+if not config.has_section('core'):
+    config.add_section('core')
+
+if not config.has_section('logging'):
+    config.add_section('logging')
+
+if not config.has_section('local'):
+    config.add_section('local')
+
+if not config.has_section('http'):
+    config.add_section('http')
+
+if not config.has_section('mpd'):
+    config.add_section('mpd')
+
+if not config.has_section('spotify'):
+    config.add_section('spotify')
+
+if not config.has_section('spotify_web'):
+    config.add_section('spotify_web')
+
+if not config.has_section('audio'):
+    config.add_section('audio')
+
 core_defaults()
 logging_defaults()
 local_defaults()
