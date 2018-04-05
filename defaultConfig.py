@@ -17,22 +17,22 @@ def logging_defaults():
 
 def local_defaults():
     config['local']['media_dir'] = '/var/lib/mopidy/media'
-    config['local']['enabled'] = False
+    config['local']['enabled'] = 'False'
 
 def m3u_defaults():
     config['m3u']['playlists_dir'] = '/var/lib/mopidy/playlists'
     config['m3u']['test'] = 'bullshit'
 
 def http_defaults():
-    config['http']['enabled'] = True
+    config['http']['enabled'] = 'True'
     config['http']['hostname'] = '0.0.0.0'
-    config['http']['port'] = 8888
+    config['http']['port'] = '8888'
     config['http']['static_dir'] = ""
     config['http']['zeroconf'] = 'Mopidy HTTP server on $hostname'
 
 def websettings_defaults():
-    config['websettings']['enabled'] = True
-    config['websettings']['musicbox'] = True
+    config['websettings']['enabled'] = 'True'
+    config['websettings']['musicbox'] = 'True'
     config['websettings']['config_file'] = '/etc/mopidy/mopidy.conf'
 
 def spotify_defaults(spotify_user = '', spotify_client_id = '', spotify_client_secret = '', spotify_password = ''):
