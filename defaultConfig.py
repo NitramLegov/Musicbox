@@ -41,7 +41,7 @@ def spotify_defaults(spotify_user = '', spotify_client_id = '', spotify_client_s
     config['spotify']['client_id'] = spotify_client_id
     config['spotify']['client_secret'] = spotify_client_secret
     config['spotify']['password'] = spotify_password
-    config['spotify']['bitrate'] = 320
+    config['spotify']['bitrate'] = '320'
 
 
 if not config.has_section('core') : config.add_section('core')
