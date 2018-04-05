@@ -76,11 +76,17 @@ if not config.has_section('logging'):
 if not config.has_section('local'):
     config.add_section('local')
 
+if not config.has_section('m3u'):
+    config.add_section('m3u')
+
 if not config.has_section('http'):
     config.add_section('http')
 
 if not config.has_section('mpd'):
     config.add_section('mpd')
+
+if not config.has_section('websettings'):
+    config.add_section('websettings')
 
 if not config.has_section('spotify'):
     config.add_section('spotify')
