@@ -23,7 +23,7 @@ def m3u_defaults():
     config['m3u']['playlists_dir'] = '/var/lib/mopidy/playlists'
     config['m3u']['test'] = 'bullshit'
 
-def_http_defaults():
+def http_defaults():
     config['http']['enabled'] = True
     config['http']['hostname'] = '0.0.0.0'
     config['http']['port'] = 8888
