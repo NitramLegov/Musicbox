@@ -32,7 +32,7 @@ def http_defaults():
 
 def mpd_defaults():
     config['mpd']['enabled'] = 'True'
-    config['mpd']['hostname'] = '127.0.0.1'
+    config['mpd']['hostname'] = '::'
     config['mpd']['port'] = '6600'
     config['mpd']['password'] = ''
     config['mpd']['max_connections'] = '20'

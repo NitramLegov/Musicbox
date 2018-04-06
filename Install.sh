@@ -116,4 +116,11 @@ echo '--------------------------------------------'
 echo 'now we enable running mopidy as a service. This requires all config to be stored in /etc/mopiy/mopidy.conf'
 sudo systemctl enable mopidy
 
+echo '--------------------------------------------'
+echo 'Since this is intended to run on a pi3 with active Wifi, an SSH parameter needs to be set in order to ensure good ssh performance'
+enter_full_setting 'IPQoS 0x00' /etc/ssh/ssh_config
+enter_full_setting 'IPQoS 0x00' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+
+echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'
