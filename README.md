@@ -16,5 +16,5 @@ Suptronics x400<br>
 
 # Installation
 ```bash
-git clone https://github.com/NitramLegov/Musicbox.git && sudo ./Install.sh
+git clone https://github.com/NitramLegov/Musicbox.git && cd Musicbox && sudo ./Install.sh
 ```
