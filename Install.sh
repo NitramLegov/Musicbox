@@ -157,7 +157,7 @@ sudo systemctl start dnsmasq
 
 # Bluetooth config
 sudo bash <(curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh)
-
+sudo python defaultConfigMopidy.py
 
 echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'
