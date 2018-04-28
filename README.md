@@ -15,7 +15,6 @@ Suptronics x400<br>
 [BT-Speaker](https://github.com/lukasjapan/bt-speaker)<br>
 
 # Installation
-Just clone the repository and run
 ```bash
-sudo ./Install.sh
-```bash
+git clone https://github.com/NitramLegov/Musicbox.git && sudo ./Install.sh
+```
