@@ -30,7 +30,7 @@ EOF
 mv "$2.bak" "$2"
 }
 
-toogle_setting_on_off()
+toggle_setting_on_off()
 {
 lua - "$1" "$2" "$3" <<EOF > "$3.bak"
 local key=assert(arg[1])
@@ -110,7 +110,7 @@ sudo pip install -q Mopidy-WebSettings
 echo '--------------------------------------------'
 echo 'now we will add the default configuration'
 sudo pip install -q configparser
-sudo python defaultConfig.py
+sudo python defaultConfigMopidy.py
 
 echo '--------------------------------------------'
 echo 'now we enable running mopidy as a service. This requires all config to be stored in /etc/mopiy/mopidy.conf'
@@ -121,6 +121,43 @@ echo 'Since this is intended to run on a pi3 with active Wifi, an SSH parameter 
 enter_full_setting 'IPQoS 0x00' /etc/ssh/ssh_config
 enter_full_setting 'IPQoS 0x00' /etc/ssh/sshd_config
 sudo systemctl restart ssh
+
+
+echo '--------------------------------------------'
+echo 'Let us enable the pi to run as a wifi Access point'
+sudo apt-get -qq -y install dnsmasq hostapd
+NOW=$(date +"%m_%d_%Y")
+sudo cp /etc/dhcpcd.conf /etc/dhcpcd_$NOW.conf.bak
+sudo echo "interface wlan0" > /etc/dhcpcd.conf
+sudo echo "static ip_address=10.0.0.1/24" >> /etc/dhcpcd.conf
+sudo service dhcpcd restart
+sudo cp /etc/dnsmasq.conf /etc/dnsmasq_$NOW.conf.bak  
+sudo echo "interface=wlan0" > /etc/dnsmasq.conf
+sudo echo "dhcp-range=10.0.0.1,10.0.0.255,255.255.255.0,24h" >> /etc/dnsmasq.conf
+
+sudo echo "interface=wlan0" > /etc/hostapd/hostapd.conf
+#sudo echo "driver=rtl8192cu" >> /etc/hostapd/hostapd.conf
+sudo echo "ssid=asmo" >> /etc/hostapd/hostapd.conf
+sudo echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
+sudo echo "channel=6" >> /etc/hostapd/hostapd.conf
+sudo echo "macaddr_acl=0" >> /etc/hostapd/hostapd.conf
+sudo echo "auth_algs=1" >> /etc/hostapd/hostapd.conf
+sudo echo "ignore_broadcast_ssid=0" >> /etc/hostapd/hostapd.conf
+sudo echo "wpa=2" >> /etc/hostapd/hostapd.conf
+sudo echo "wpa_passphrase=12345678" >> /etc/hostapd/hostapd.conf
+sudo echo "wpa_key_mgmt=WPA-PSK" >> /etc/hostapd/hostapd.conf
+sudo echo "wpa_pairwise=TKIP" >> /etc/hostapd/hostapd.conf
+sudo echo "rsn_pairwise=CCMP" >> /etc/hostapd/hostapd.conf
+
+sudo cp /etc/default/hostapd /etc/default/hostapd_$NOW.bak  
+sudo echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" > /etc/default/hostapd
+
+sudo systemctl start hostapd
+sudo systemctl start dnsmasq
+
+# Bluetooth config
+sudo bash <(curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh)
+
 
 echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'
