@@ -8,16 +8,16 @@ config = configparser.ConfigParser()
 config.read(config_file)
 
 def bt_speaker_defaults():
-    config['bt_speaker']['play_command'] = 'aplay -Ddsnoop:CARD=IQaudIODAC,DEV=0 -f cd -'
+    config['bt_speaker']['play_command'] = 'aplay -Dhw:CARD=IQaudIODAC,DEV=0 -f cd -'
     config['bt_speaker']['connect_command'] = '/etc/bt_speaker/hooks/connect'
     config['bt_speaker']['disconnect_command'] = '/etc/bt_speaker/hooks/disconnect'
 
 
 def alsa_defaults():
     config['alsa']['enabled'] = 'yes'
-    config['alsa']['mixer'] = 'PCM'
+    config['alsa']['mixer'] = 'Digital'
     config['alsa']['id'] = '0'
-    config['alsa']['cardindex'] = '0'
+    config['alsa']['cardindex'] = '1'
 
 
 if not config.has_section('bt_speaker'):

@@ -40,7 +40,3 @@ sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/pulseaudio.service
 sudo systemctl daemon-reload
 sudo systemctl enable pulseaudio.service
 sudo systemctl start pulseaudio.service
-
-
-
-
