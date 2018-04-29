@@ -18,3 +18,6 @@ Suptronics x400<br>
 ```bash
 git clone https://github.com/NitramLegov/Musicbox.git && cd Musicbox && sudo ./Install.sh
 ```
+Please note that this script contains the following line:<br>
+curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash <br>
+This means trusting the owner of the bt-speaker repo just as much as the author of this Musicbox repo. Please check upfront and decide whether you really want to do this.
