@@ -40,10 +40,7 @@ sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/pulseaudio.service
 sudo systemctl daemon-reload
 sudo systemctl enable pulseaudio.service
 sudo systemctl start pulseaudio.service
-sudo python defaultConfigBluetooth.py
 
 
 
-curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
-sudo python defaultConfigBTSpeaker.py
-sudo systemctl restart bt_speaker
+

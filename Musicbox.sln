@@ -9,8 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		defaultConfigBTSpeaker.py = defaultConfigBTSpeaker.py
 		defaultConfigMopidy.py = defaultConfigMopidy.py
 		Install.sh = Install.sh
-		Install_BTAudio.sh = Install_BTAudio.sh
+		Install_BT_Speaker.sh = Install_BT_Speaker.sh
 		Install_Mopidy.sh = Install_Mopidy.sh
+		Install_Pulseaudio.sh = Install_Pulseaudio.sh
+		Install_SystemSettings.sh = Install_SystemSettings.sh
 	EndProjectSection
 EndProject
 Global
