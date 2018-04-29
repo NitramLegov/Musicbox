@@ -107,47 +107,7 @@ else
 fi
 echo 'iqaudio activated'
 
-echo '--------------------------------------------'
-echo 'now we can start installing mopidy, following the instructions on https://docs.mopidy.com/en/latest/installation/raspberrypi/'
-echo 'Adding the repository...'
-wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/jessie.list
-echo '--------------------------------------------'
-echo 'Updating the apt-get index'
-sudo apt-get -qq update
-echo '--------------------------------------------'
-echo 'Installing mopidy'
-sudo apt-get -qq -y install build-essential python-dev python-pip mopidy
-
-echo '--------------------------------------------'
-echo 'now we will install a couple of mopidy extensions.'
-#extensions are installed in this order because the apt-get commands will install dependencies like libffi automatically. This is needed by some of the extensions installed via pip.
-
-echo 'spotify and youtube..'
-sudo apt-get -qq -y install mopidy-spotify mopidy-spotify-tunigo mopidy-youtube
-echo 'Mopidy-Iris..'
-sudo pip install -q Mopidy-Iris
-echo 'Mopidy-Material-Webclient..'
-sudo pip install -q Mopidy-Material-Webclient
-echo 'Mopidy-Moped..'
-sudo pip install -q Mopidy-Moped
-echo 'Mopidy-Mopify..'
-sudo pip install -q Mopidy-Mopify
-echo 'Mopidy-Party..'
-sudo pip install -q Mopidy-Party
-echo 'Mopidy-MusicBox-Webclient..'
-sudo pip install -q Mopidy-MusicBox-Webclient
-echo 'Mopidy-Websettings..'
-sudo pip install -q Mopidy-WebSettings
-
-echo '--------------------------------------------'
-echo 'now we will add the default configuration'
-sudo pip install -q configparser
-sudo python defaultConfigMopidy.py
-
-echo '--------------------------------------------'
-echo 'now we enable running mopidy as a service. This requires all config to be stored in /etc/mopiy/mopidy.conf'
-sudo systemctl enable mopidy
+sudo ./Install_Mopidy.sh
 
 echo '--------------------------------------------'
 echo 'Since this is intended to run on a pi3 with active Wifi, an SSH parameter needs to be set in order to ensure good ssh performance'
@@ -160,10 +120,7 @@ sudo systemctl restart ssh
 #echo 'Let us enable the pi to run as a wifi Access point'
 #enable_wifi_ap
 
-# Bluetooth config
-#curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
-#sudo python defaultConfigBTSpeaker.py
-#sudo systemctl restart bt_speaker
+
 
 echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'

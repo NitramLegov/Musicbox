@@ -5,9 +5,12 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29325012-888F-4BC0-AF29-B3EA7C7EA7BF}"
 	ProjectSection(SolutionItems) = preProject
+		defaultConfigBluetooth.py = defaultConfigBluetooth.py
 		defaultConfigBTSpeaker.py = defaultConfigBTSpeaker.py
 		defaultConfigMopidy.py = defaultConfigMopidy.py
 		Install.sh = Install.sh
+		Install_BTAudio.sh = Install_BTAudio.sh
+		Install_Mopidy.sh = Install_Mopidy.sh
 	EndProjectSection
 EndProject
 Global
