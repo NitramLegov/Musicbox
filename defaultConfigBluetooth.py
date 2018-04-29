@@ -7,6 +7,8 @@ config_file_audio = "/etc/bluetooth/audio.conf"
 config_audio = configparser.ConfigParser()
 try:
     config_audio.read(config_file_audio)
+except:
+    print 'file not available'
 
 if not config_audio.has_section('General'):
     config_audio.add_section('General')
@@ -23,6 +25,9 @@ config_file_main = "/etc/bluetooth/main.conf"
 config_main = configparser.ConfigParser()
 try:
     config_main.read(config_file_main)
+except:
+    print 'file not available'
+
 if not config_main.has_section('General'):
     config_main.add_section('General')
 
