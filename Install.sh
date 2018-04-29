@@ -161,8 +161,9 @@ sudo systemctl restart ssh
 #enable_wifi_ap
 
 # Bluetooth config
-sudo bash <(curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh)
-sudo python defaultConfigMopidy.py
+curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
+sudo python defaultConfigBTSpeaker.py
+sudo systemctl restart bt_speaker
 
 echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'
