@@ -26,10 +26,11 @@ sudo python defaultConfigBTSpeaker.py
 
 #enable wifi down when connecting
 enter_full_setting "btspeaker ALL=(ALL) NOPASSWD: /sbin/ifconfig" /etc/sudoers
-cp custom_connect.sh /etc/bt_speaker/hooks/
-cp custom_disconnect.sh /etc/bt_speaker/hooks/
-sudo chmod+x /etc/bt_speaker/hooks/custom_connect.sh
-sudo chmod+x /etc/bt_speaker/hooks/custom_disconnect.sh
+enter_full_setting "btspeaker ALL=(ALL) NOPASSWD: /bin/systemctl" /etc/sudoers
+sudo cp custom_connect.sh /etc/bt_speaker/hooks/
+sudo cp custom_disconnect.sh /etc/bt_speaker/hooks/
+sudo chmod +x /etc/bt_speaker/hooks/custom_connect.sh
+sudo chmod +x /etc/bt_speaker/hooks/custom_disconnect.sh
 
 
 sudo systemctl restart bt_speaker
