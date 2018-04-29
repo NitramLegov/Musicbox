@@ -107,7 +107,8 @@ else
 fi
 echo 'iqaudio activated'
 
-sudo ./Install_Mopidy.sh
+#temporarily disabled
+#sudo ./Install_Mopidy.sh
 
 echo '--------------------------------------------'
 echo 'Since this is intended to run on a pi3 with active Wifi, an SSH parameter needs to be set in order to ensure good ssh performance'
@@ -120,7 +121,7 @@ sudo systemctl restart ssh
 #echo 'Let us enable the pi to run as a wifi Access point'
 #enable_wifi_ap
 
-
+sudo ./Install_BTAudio.sh
 
 echo '--------------------------------------------'
 echo 'All done, a reboot is recommended.'
