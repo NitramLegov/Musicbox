@@ -96,6 +96,7 @@ sudo raspi-config nonint do_boot_behaviour B1
 #Enable the x400 expansion board
 echo '--------------------------------------------'
 echo 'Now we will enable the x400 expansion board by enabling i2c and adding a device tree overlay'
+echo 'In addition, asound.conf gets copied in order to enable software mixing in ALSA.'
 sudo raspi-config nonint do_i2c 0
 
 if check_iqaudio_activated ; then
@@ -104,6 +105,7 @@ if check_iqaudio_activated ; then
 else
  echo 'activating iqaudio'
  enter_full_setting dtoverlay=iqaudio-dacplus $CONFIG
+ sudo cp asound.conf /etc/asound.conf
 fi
 echo 'iqaudio activated'
 

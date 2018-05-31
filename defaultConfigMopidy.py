@@ -65,7 +65,8 @@ def spotify_web_defaults(spotify_user = '', spotify_client_id = '', spotify_clie
 def audio_defaults():
     config['audio']['mixer_volume'] = '100'
     config['audio']['mixer'] = 'software'
-    config['audio']['output'] = 'alsasink device=hw:1,0'
+#    config['audio']['output'] = 'alsasink device=hw:1,0'
+    config['audio']['output'] = 'alsasink device=default'
 
 if not config.has_section('core'):
     config.add_section('core')
