@@ -19,6 +19,8 @@ If you want to install the software as is (e.g. if you have the exact same syste
 ```bash
 git clone https://github.com/NitramLegov/Musicbox.git && cd Musicbox && sudo ./Install.sh
 ```
+For the audio settings to work you have to reboot after the installation.
+
 Please note that this script contains the following line:<br>
 ```bash
 curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
@@ -28,7 +30,7 @@ This means trusting the owner of the bt-speaker repo just as much as the author 
 # Adjusting to your needs
 If you use a different soundcard:
 Adjust the following lines in Install_SystemSettings.sh to your needs:
-```bash```
+```bash
 if check_iqaudio_activated ; then
  #do nothing
  echo 'iqaudio already activated'
