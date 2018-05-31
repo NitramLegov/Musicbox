@@ -1,3 +1,4 @@
+
 enter_full_setting()
 {
 lua - "$1" "$2" <<EOF > "$2.bak"
@@ -19,7 +20,7 @@ EOF
 mv "$2.bak" "$2"
 }
 
-
+echo 'Installing the bt_speaker Software'
 curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
 sudo python defaultConfigBluetooth.py
 sudo python defaultConfigBTSpeaker.py
@@ -32,5 +33,5 @@ sudo cp custom_disconnect.sh /etc/bt_speaker/hooks/
 sudo chmod +x /etc/bt_speaker/hooks/custom_connect.sh
 sudo chmod +x /etc/bt_speaker/hooks/custom_disconnect.sh
 
-
 sudo systemctl restart bt_speaker
+echo 'bt_speaker installed'

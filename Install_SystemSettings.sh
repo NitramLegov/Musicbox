@@ -54,6 +54,7 @@ mv "$3.bak" "$3"
 
 enable_wifi_ap()
 {
+#This will be needed in a later version, when the pi should open a Wifi AP.
 sudo apt-get -qq -y install dnsmasq hostapd
 NOW=$(date +"%m_%d_%Y")
 sudo cp /etc/dhcpcd.conf /etc/dhcpcd_$NOW.conf.bak
@@ -66,7 +67,7 @@ sudo echo "dhcp-range=10.0.0.1,10.0.0.255,255.255.255.0,24h" >> /etc/dnsmasq.con
 
 sudo echo "interface=wlan0" > /etc/hostapd/hostapd.conf
 #sudo echo "driver=rtl8192cu" >> /etc/hostapd/hostapd.conf
-sudo echo "ssid=asmo" >> /etc/hostapd/hostapd.conf
+sudo echo "ssid=PiMusicbox" >> /etc/hostapd/hostapd.conf
 sudo echo "hw_mode=g" >> /etc/hostapd/hostapd.conf
 sudo echo "channel=6" >> /etc/hostapd/hostapd.conf
 sudo echo "macaddr_acl=0" >> /etc/hostapd/hostapd.conf
