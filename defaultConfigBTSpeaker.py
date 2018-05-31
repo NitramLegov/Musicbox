@@ -9,7 +9,7 @@ config.read(config_file)
 
 def bt_speaker_defaults():
 #    config['bt_speaker']['play_command'] = 'aplay -Ddmix:CARD=IQaudIODAC,DEV=0 -f cd -'
-    config['bt_speaker']['play_command'] = 'aplay -Ddefault -f -N cd -'
+    config['bt_speaker']['play_command'] = 'aplay -D default -N -f cd -'
     config['bt_speaker']['connect_command'] = '/etc/bt_speaker/hooks/custom_connect.sh'
     config['bt_speaker']['disconnect_command'] = '/etc/bt_speaker/hooks/custom_disconnect.sh'
 
