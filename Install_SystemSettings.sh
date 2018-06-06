@@ -55,7 +55,7 @@ mv "$3.bak" "$3"
 enable_wifi_ap()
 {
 #This will be needed in a later version, when the pi should open a Wifi AP.
-sudo apt-get -qq -y install dnsmasq hostapd
+sudo apt-get -qq -y install dnsmasq hostapd >> /dev/null
 NOW=$(date +"%m_%d_%Y")
 sudo cp /etc/dhcpcd.conf /etc/dhcpcd_$NOW.conf.bak
 sudo echo "interface wlan0" > /etc/dhcpcd.conf
@@ -90,9 +90,13 @@ BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
 CONFIG=/boot/config.txt
 #Let us do some basic config
 echo '--------------------------------------------'
-echo 'First, we need to do some basic settings: Expand the FS and boot to command line.'
-sudo raspi-config nonint do_expand_rootfs
+echo 'Expand the FS'
+sudo raspi-config nonint do_expand_rootfs >> /dev/null
+echo 'boot to command line'
 sudo raspi-config nonint do_boot_behaviour B1
+echo 'Change the hostname'
+sudo raspi-config nonint do_hostname PiMusicBox
+
 
 #Enable the x400 expansion board
 echo '--------------------------------------------'
@@ -125,4 +129,4 @@ sudo systemctl restart ssh
 
 
 echo '--------------------------------------------'
-echo 'All done, a reboot is recommended.'
+echo 'System Settings changed, a reboot is recommended.'
