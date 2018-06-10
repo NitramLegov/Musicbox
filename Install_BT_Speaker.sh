@@ -23,7 +23,7 @@ mv "$2.bak" "$2"
 echo 'Installing the bt_speaker Software'
 curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
 echo 'bt_speaker installed, starting configuration.'
-BTMac = $(sudo ls /var/lib/bluetooth)
+BTMac=$(sudo ls /var/lib/bluetooth)
 sudo python defaultConfigBluetooth.py $BTMac
 sudo python defaultConfigBTSpeaker.py
 
