@@ -17,7 +17,7 @@ Suptronics x400<br>
 # Installation
 If you want to install the software as is (e.g. if you have the exact same system as me), just do:
 ```bash
-git clone https://github.com/NitramLegov/Musicbox.git && cd Musicbox && sudo ./Install.sh
+sudo apt-get -qq update && sudo apt-get -qq install git && git clone https://github.com/NitramLegov/Musicbox.git && cd Musicbox && sudo ./Install.sh
 ```
 For the audio settings to work you have to reboot after the installation.
 
