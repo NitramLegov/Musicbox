@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Install_Mopidy.sh = Install_Mopidy.sh
 		Install_Pulseaudio.sh = Install_Pulseaudio.sh
 		Install_SystemSettings.sh = Install_SystemSettings.sh
+		usbmount.conf = usbmount.conf
 	EndProjectSection
 EndProject
 Global

@@ -14,10 +14,12 @@ echo '--------------------------------------------'
 echo 'now we will install a couple of mopidy extensions.'
 #extensions are installed in this order because the apt-get commands will install dependencies like libffi automatically. This is needed by some of the extensions installed via pip.
 
-echo 'spotify and youtube..'
+echo 'Backend Plugins: spotify and youtube..'
 sudo pip install pafy >> /dev/null
 sudo pip install youtube-dl >> /dev/null
 sudo apt-get -qq -y install mopidy-spotify mopidy-spotify-tunigo mopidy-youtube >> /dev/null
+echo 'Backend plugin: Mopidy-Local-SQLite'
+sudo pip install Mopidy-Local-SQLite
 echo 'Mopidy-Iris..'
 sudo pip install -q Mopidy-Iris
 echo 'Mopidy-Material-Webclient..'

@@ -114,7 +114,10 @@ else
 fi
 echo 'iqaudio activated'
 
-
+echo 'We will anable automounting of USB Devices now'
+sudo apt-get -qq install usbmount >>/dev/null
+sudo mkdir /usbdrives/usb0 /usbdrives/usb1 /usbdrives/usb2 /usbdrives/usb3 /usbdrives/usb4 /usbdrives/usb5 /usbdrives/usb6 /usbdrives/usb7
+sudo cp usbmount.conf /etc/usbmount/usbmount.conf
 
 echo '--------------------------------------------'
 echo 'Since this is intended to run on a pi3 with active Wifi, an SSH parameter needs to be set in order to ensure good ssh performance'
@@ -122,6 +125,11 @@ enter_full_setting 'IPQoS 0x00' /etc/ssh/ssh_config
 enter_full_setting 'IPQoS 0x00' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 
+echo 'We will change our default shell to zsh'
+sudo apt-get -qq install zsh >> /dev/null
+chsh -s /bin/zsh
+echo 'And also install the OhMyZSH Customization for zsh'
+curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sudo bash
 
 #echo '--------------------------------------------'
 #echo 'Let us enable the pi to run as a wifi Access point'
