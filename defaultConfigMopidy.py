@@ -89,6 +89,9 @@ if not config.has_section('logging'):
 if not config.has_section('local'):
     config.add_section('local')
 
+if not config.has_section('file'):
+    config.add_section('file')
+
 if not config.has_section('m3u'):
     config.add_section('m3u')
 
@@ -113,6 +116,7 @@ if not config.has_section('audio'):
 core_defaults()
 logging_defaults()
 local_defaults()
+file_defaults()
 m3u_defaults()
 http_defaults()
 mpd_defaults()

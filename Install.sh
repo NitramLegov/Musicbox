@@ -1,4 +1,4 @@
-
+echo 'Starting with the Musicbox installation'
 sudo ./Install_SystemSettings.sh
 sudo ./Install_BT_Speaker.sh
 

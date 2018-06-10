@@ -19,7 +19,7 @@ sudo pip install pafy >> /dev/null
 sudo pip install youtube-dl >> /dev/null
 sudo apt-get -qq -y install mopidy-spotify mopidy-spotify-tunigo mopidy-youtube >> /dev/null
 echo 'Backend plugin: Mopidy-Local-SQLite'
-sudo pip install Mopidy-Local-SQLite
+sudo pip install -q Mopidy-Local-SQLite
 echo 'Mopidy-Iris..'
 sudo pip install -q Mopidy-Iris
 echo 'Mopidy-Material-Webclient..'
