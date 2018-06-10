@@ -116,7 +116,7 @@ echo 'iqaudio activated'
 
 echo 'We will anable automounting of USB Devices now'
 sudo apt-get -qq install usbmount >>/dev/null
-sudo mkdir -p /usbdrives/{usb0,usb1,usb2,usb3,usb4,usb5,usb6,usb7}
+sudo mkdir -p /usbdrives/usb0 /usbdrives/usb1 /usbdrives/usb2 /usbdrives/usb3 /usbdrives/usb4 /usbdrives/usb5 /usbdrives/usb6 /usbdrives/usb7
 sudo cp usbmount.conf /etc/usbmount/usbmount.conf
 #This is bad! but according to https://github.com/rbrito/usbmount/issues/2 we have to do this in order to enable usbmount on Rasbian stretch
 sudo cp systemd-udevd.service /lib/systemd/system/systemd-udevd.service

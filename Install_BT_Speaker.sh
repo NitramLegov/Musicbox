@@ -22,8 +22,11 @@ mv "$2.bak" "$2"
 
 echo 'Installing the bt_speaker Software'
 curl -s https://raw.githubusercontent.com/lukasjapan/bt-speaker/master/install.sh | sudo bash
-sudo python defaultConfigBluetooth.py
+echo 'bt_speaker installed, starting configuration.'
+BTMac = $(sudo ls /var/lib/bluetooth)
+sudo python defaultConfigBluetooth.py $BTMac
 sudo python defaultConfigBTSpeaker.py
+
 
 #enable wifi down when connecting
 enter_full_setting "btspeaker ALL=(ALL) NOPASSWD: /sbin/ifconfig" /etc/sudoers
