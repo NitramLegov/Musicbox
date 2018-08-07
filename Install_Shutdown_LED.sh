@@ -33,8 +33,8 @@ sudo cat > /opt/powerbutton/listen-for-shutdown.py << EOF
 import RPi.GPIO as GPIO
 import subprocess
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.wait_for_edge(3, GPIO.FALLING)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.wait_for_edge(4, GPIO.FALLING)
 print('Power Down')
 subprocess.call(['shutdown', '-h', 'now'], shell=False)
 EOF
