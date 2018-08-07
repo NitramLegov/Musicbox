@@ -17,7 +17,7 @@ def shutdown_request(channel):
             if (not GPIO.input(channel)):
                 x = x + 1
             print (x)
-            sleep(1)
+            time.sleep(1)
         if x == 5:
             print('Power Down')
             subprocess.call(['shutdown', '-h', 'now'], shell=False)
