@@ -7,8 +7,7 @@ import subprocess
 import time
 
 def shutdown_request(channel):
-    print "change in GPIO22: " , channel
-    print GPIO.input(channel)
+    print ("Starting countign seconds..")
     if (not GPIO.input(channel)):
         #print str(datetime.datetime.now()), " Shutdown request"
         #sys.stdout.flush()
@@ -17,6 +16,7 @@ def shutdown_request(channel):
         for i in range(5):
             if (not GPIO.input(channel)):
                 x = x + 1
+            print (x)
             sleep(1)
         if x == 5:
             print('Power Down')
@@ -26,6 +26,9 @@ def shutdown_request(channel):
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(22, GPIO.FALLING, callback=shutdown_request, bouncetime=5000)
+print('Started listening for shutdown requests.')
+while True:
+    time.sleep(1)
 #GPIO.wait_for_edge(22, GPIO.FALLING)
 #print('Power Down')
 #subprocess.call(['shutdown', '-h', 'now'], shell=False)
