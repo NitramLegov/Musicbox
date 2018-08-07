@@ -22,7 +22,7 @@ mv "$2.bak" "$2"
 }
 
 echo 'enable UART to enable the power indicator LED'
-enable_full_setting enable_uart=1 $CONFIG
+enter_full_setting enable_uart=1 $CONFIG
 
 echo 'writing python listener for power button'
 sudo mkdir /opt/powerbutton
