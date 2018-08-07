@@ -1,5 +1,5 @@
 #!/bin/sh
-
+CONFIG=/boot/config.txt
 enter_full_setting()
 {
 lua - "$1" "$2" <<EOF > "$2.bak"
