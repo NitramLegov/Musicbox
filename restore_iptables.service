@@ -1,6 +1,7 @@
 
 [Unit]
 Description=Restore Iptables for Access point configuration
+After=network-online.target
 [Service]
 ExecStart=/opt/restore_iptables/restore_iptables.sh
 Restart=always
