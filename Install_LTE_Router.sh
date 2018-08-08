@@ -58,3 +58,7 @@ sudo iptables -t nat -A  POSTROUTING -o eth1 -j MASQUERADE
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 sudo mkdir /opt/restore_iptables
 sudo cp restore_iptables.sh /opt/restore_iptables/restore_iptables.sh
+sudo cp restore_iptables.service /etc/systemd/system/restore_iptables.service
+sudo systemctl daemon-reload
+sudo systemctl enable restore_iptables.service
+sudo systemctl start restore_iptables.service
