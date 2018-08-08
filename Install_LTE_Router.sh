@@ -52,6 +52,7 @@ sudo systemctl start dnsmasq
 sudo systemctl enable dnsmasq
 
 sudo cp /etc/dhcpcd.conf /etc/dhcpcd_$NOW.conf.bak
+sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
 sudo cp sysctl.conf /etc/sysctl.conf
 sudo iptables -t nat -A  POSTROUTING -o eth1 -j MASQUERADE
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
