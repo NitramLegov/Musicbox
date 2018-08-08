@@ -4,6 +4,7 @@ Description=Restore Iptables for Access point configuration
 After=network-online.target
 [Service]
 ExecStart=/opt/restore_iptables/restore_iptables.sh
+RemainAfterExit=true
 Restart=always
 RestartSec=3
 [Install]
