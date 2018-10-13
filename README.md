@@ -1,5 +1,7 @@
 # Musicbox
-This Repository contains installation code for setting up a music system based on the raspberry pi.<br>
+This project was born when we got more and more unhappy with the portable bluetooth speaker you can find online. Since we go to festivals each year it was important for us to be able to play music with a higher volume and better quality than most available speakers provided. Plus, it adds an extra level of individuality.
+A brief overview on th project can be found [here](https://wiki.comakingspace.de/Project:Music_Station)
+
 # Hardware
 Raspberry pi<br>
 Suptronics x400<br>
@@ -45,7 +47,7 @@ echo 'iqaudio activated'
 In this case, please also consider changing asound.conf to your needs accordingly.
 
 If you want to use a different set of mopidy plugins:
-Install Mopidy manually (Following this [Tutorial] (https://docs.mopidy.com/en/latest/installation/raspberrypi/))
+Install Mopidy manually (Following this [Tutorial](https://docs.mopidy.com/en/latest/installation/raspberrypi/))
 Install the plugins
 Check the settings done in defaultConfigMopidy.py and copy especially the output option in the audio section:
 output = 'alsasink device=default'
